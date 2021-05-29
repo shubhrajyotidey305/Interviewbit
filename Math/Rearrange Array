@@ -1,3 +1,4 @@
+#solution 1 with O(n) space complexity
 void Solution::arrange(vector<int> &A) {
     // Do not write main() function.
     // Do not read input, instead use the arguments to the function.
@@ -14,4 +15,18 @@ void Solution::arrange(vector<int> &A) {
     }
     v.clear();
     
+}
+
+#solution 2 with O(1) space complexity
+void Solution::arrange(vector<int> &A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    int n=A.size();  
+    for(int i=0;i<n;i++){
+        A[i]=A[i]+(A[A[i]]%n)*n;
+    }
+    for(int i=0;i<n;i++)
+     A[i]=A[i]/n;
 }
