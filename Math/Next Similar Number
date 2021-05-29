@@ -1,0 +1,3 @@
+string Solution::solve(string A) {
+    return (next_permutation(A.begin(), A.end()))?(A):("-1");
+}
