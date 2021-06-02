@@ -1,0 +1,42 @@
+const int MAX = 1000000007;
+
+void multiply(vector <vector <long long>> &A,vector <vector <long long>> &B )
+{
+    int m00 = ((A[0][0]*B[0][0])%MAX+(A[0][1]*B[1][0])%MAX)%MAX;
+    int m01 = ((A[0][0]*B[0][1])%MAX+(A[0][1]*B[1][1])%MAX)%MAX;
+    int m10 = ((A[1][0]*B[0][0])%MAX+(A[1][1]*B[1][0])%MAX)%MAX;
+    int m11 = ((A[1][0]*B[0][1])%MAX+(A[1][1]*B[1][1])%MAX)%MAX;
+    A[0][0] = m00;
+    A[0][1] = m01;
+    A[1][0] = m10;
+    A[1][1] = m11;
+}
+
+void power(vector <vector <long long>> &A,int n)
+{
+    if(n>1)
+    {
+        vector <vector <long long>> F(A);
+        multiply(A,A);
+        power(A,n/2);
+        if(n%2==1)multiply(A,F);
+    }
+}
+int Solution::solve(int A) {
+    
+    vector <vector<long long>> v;
+    
+    vector <long long> temp;
+    temp.push_back(1LL);
+    temp.push_back(1LL);
+    v.push_back(temp);
+    
+    vector <long long> sec;
+    sec.push_back(1LL);
+    sec.push_back(0LL);
+    v.push_back(sec);
+    
+    power(v,A-1);
+    return (v[0][0]%MAX);
+    
+}
